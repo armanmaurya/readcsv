@@ -1,0 +1,49 @@
+# Ignore build directories
+/build/
+/bin/
+/out/
+
+# Ignore object files and precompiled headers
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.pdb
+*.dll
+*.exe
+*.dSYM/
+
+# Ignore CMake and Makefiles artifacts
+CMakeCache.txt
+CMakeFiles/
+CMakeLists.txt.user
+*.cmake
+
+# Ignore compiled files from libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
+
+# Ignore Python virtual environment directories (if you use Python tools)
+venv/
+env/
+
+# Ignore other build-related artifacts
+*.d
+*.dSYM/
+
+# Ignore backup files
+*~
+*.bak
+*.swp
+
+# Ignore logs
+*.log
