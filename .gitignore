@@ -3,6 +3,8 @@
 /bin/
 /out/
 
+.vscode
+
 # Ignore object files and precompiled headers
 *.o
 *.obj
