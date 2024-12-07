@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 // ANSI color codes
 #define RESET "\033[0m"
@@ -28,7 +29,7 @@ parse_csv::parse_csv(string file_path)
 
     file.close();
 
-    int num_columns = data[0].size();
+    num_columns = data[0].size();
 }
 
 vector<string> parse_csv::parse_line(string line)
@@ -62,28 +63,37 @@ void parse_csv::print_csv()
             num_spaces = widths[i] - current_string_len;
         }
 
-        cout << GREEN << data[0][i] << "\t" << endl;
+        cout << GREEN << data[0][i]  << RESET<< setw(num_spaces) << "\t" << RESET;
     }
 
-    for (const vector<string> &i : data)
-    {
-        int itr = 0;
-        for (const string &j : i)
-        {
-            int current_string_len = j.length();
-            int num_spaces = 0;
+	cout << endl;
+	cout << endl;
 
-            if (current_string_len < widths[itr])
-            {
-                num_spaces = widths[itr] - current_string_len;
-            }
+    int rows = data.size();
+    for (int i = 1; i < rows; i++) {
+	    int columns = data[i].size();
+	    for (int j = 0; j < columns; j++) {
+		int current_string_len = data[i][j].length();
+            	int num_spaces = 0;
 
-            cout << GREEN << j << setw(num_spaces) << "\t" << RESET;
-            itr++;
-        }
-        cout << endl;
+            	if (current_string_len < widths[j])
+            	{
+                	num_spaces = widths[j] - current_string_len;
+            	}
+		
+		if (is_number(data[i][j])) 
+		{
+			cout << RED << data[i][j] << setw(num_spaces) << "\t" << RESET;		
+		}
+		else
+		{
+          	 	cout << GREEN << data[i][j] << setw(num_spaces) << "\t" << RESET;
+		}
+	    }
+	    cout << endl;
     }
-}
+   
+   }
 
 vector<int> parse_csv::column_width()
 {
@@ -112,6 +122,14 @@ vector<int> parse_csv::column_width()
     return column_widths;
 }
 
+bool parse_csv::is_number(const string& str){
+	for (char ch : str) {
+       		if (!std::isdigit(static_cast<unsigned char>(ch))) {
+	            	return false; // Found a non-numeric character
+        	}
+    	}
+    return !str.empty();
+}
 
 void parse_csv::print_line() {
     

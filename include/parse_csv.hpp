@@ -13,5 +13,6 @@ class parse_csv {
         void print_line();
         vector<int> column_width();
         int num_columns;
+	bool is_number(const string& str);
 };
 
