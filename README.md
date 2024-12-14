@@ -1,2 +1,2 @@
 # ReadCsv
-A tool to work with csv files
+A tool to Print CSV files in formatted form in Terminal
